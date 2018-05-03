@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 //user model
 //model, takes 2 arguments, (name, object)
 // email, required, trim it, string minlength of 1
-var User = mongoose.model('User',{
+var User = mongoose.model('User', {
   email: {
   type: String,
   required: true,
@@ -12,4 +12,4 @@ var User = mongoose.model('User',{
   }
 });
 
-module.exports = (User); // same as User = User
+module.exports = {User}; // same as User = User
