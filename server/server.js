@@ -9,6 +9,7 @@ const {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose.js'); //using ES6 get destructuring {} mongoose object from db/mongoose.js
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {authenticate} = require('./middleware/authenticate');
 
 var app = express();
 const port = process.env.PORT;   //const port = process.env.PORT || 3000;   set in the environment env above
@@ -123,6 +124,15 @@ app.post('/users', (req, res) => {
 
 
 });
+
+
+
+//private routes
+app.get('/users/me', authenticate, (req, res) => {
+  res.send(req.user);
+});
+
+
 
 app.listen(port, () => {
   console.log(`started at port ${port}`);
